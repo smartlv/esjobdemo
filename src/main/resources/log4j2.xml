@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="WARN">
+
+    <Properties>
+        <Property name="file_pattern">%d{yyyy-MM-dd.HH}-%i.log</Property>
+        <Property name="layout_pattern">
+            %d{ISO8601} %-5p [%t] [${app}] trace_id: $${ctx:trace_id} %-50.50c (%F:%L) - %m%n
+        </Property>
+        <Property name="folder">logs
+        </Property>
+        <Property name="app">data-checker</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- root -->
+        <RollingFile name="rootAppender" fileName="${folder}/${app}.log"
+            filePattern="${folder}/${app}.log.${file_pattern}">
+            <PatternLayout>
+                <pattern>${layout_pattern}</pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"
+                    modulate="true" />
+                <SizeBasedTriggeringPolicy size="512 MB" />
+            </Policies>
+            <DefaultRolloverStrategy max="200" />
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <Root level="info" includeLocation="true">
+            <AppenderRef ref="rootAppender" />
+        </Root>
+
+        <!-- fatal log -->
+        <Logger name="com.weidian.node.etl.check" level="info" additivity="false">
+            <AppenderRef ref="rootAppender" />
+        </Logger>
+
+    </Loggers>
+</Configuration>
+
