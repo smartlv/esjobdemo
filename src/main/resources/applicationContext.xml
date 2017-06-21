@@ -6,5 +6,5 @@
 
 	http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
-    <import resource="jobs/jobs-*.xml"/>
+    <import resource="jobs/jobs-myelasticjob.xml"/>
 </beans>

@@ -18,7 +18,7 @@
         <dependency>
             <groupId>com.bluestone.commons</groupId>
             <artifactId>commons-util</artifactId>
-            <version>1.1.4</version>
+            <version>1.1.6</version>
         </dependency>
         <!-- 引入elastic-job-lite核心模块 -->
         <dependency>
